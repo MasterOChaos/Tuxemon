@@ -4,7 +4,7 @@ import sys
 def createatlas(inpcdat):
   # Add all of the images to a list 
   inpc = '' + inpcdat
-  images = [Image.open(x) for x in [inpcdat+'_back_walk.001.png', inpcdat+'_back_walk.000.png', inpcdat+'_back_walk.002.png', inpcdat+'_back_walk.001.png', inpcdat+'_back_walk.000.png', inpc+'_back_walk.002.png']]
+  images = [Image.open(x) for x in [inpcdat+'_back_walk.001.png', inpcdat+'_back_walk.000.png', inpcdat+'_back_walk.002.png', inpcdat+'_front_walk.001.png', inpcdat+'_front_walk.000.png', inpcdat+'_front_walk.002.png', inpcdat+'_left_walk.001.png', inpcdat+'_left_walk.000.png', inpcdat+'_left_walk.002.png', inpcdat+'_right_walk.001.png', inpcdat+'_right_walk.000.png', inpcdat+'_right_walk.002.png']]
   total_width = 0
   max_height = 0
 

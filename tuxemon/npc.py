@@ -55,6 +55,7 @@ animation_mapping = {
     False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
+ATLAS = False
 
 def tile_distance(tile0, tile1):
     x0, y0 = tile0
@@ -198,7 +199,7 @@ class NPC(Entity):
             self.monster_boxes[key] = decode_monsters(value)
         for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
-
+    if ATLAS = False
     def load_sprites(self):
         """Load sprite graphics
 
