@@ -12,15 +12,7 @@ re-distributed by the maintainers or others as part of the Git repository and
 cloned repositories, in compiled binaries, and any other ways permitted by the
 License.
 
-## What code can I contribute?
-Any of the issues on the [Tuxemon issue list](https://github.com/Tuxemon/Tuxemon/issues)
-are things we are looking to have implemented in Tuxemon. Feel free to fork the project
-and taking a shot at anything on the list! If you have a suggestion for a feature
-that's not on the current issues list, post a topic on the Programming section of the
-[Tuxemon Forums](https://forum.tuxemon.org/index.php) and discuss ways we might implement
-it in the game.
-
-## How do I contribute code?
+## How do I contribute?
 Tuxemon uses the ["Fork & Pull"](https://help.github.com/articles/using-pull-requests#fork--pull)
 method for code contributions. The *fork & pull* model lets anyone fork an existing
 repository and push changes to their personal fork without requiring access be
@@ -29,10 +21,17 @@ repository by the project maintainer. This model reduces the amount of friction 
 contributors and is popular with open source projects because it allows people to work
 independently without upfront coordination.
 
+## What code can I contribute?
+Any of the issues on the [Tuxemon issue list](https://github.com/Tuxemon/Tuxemon/issues)
+are things we are looking to have implemented in Tuxemon. Feel free to fork the project
+and taking a shot at anything on the list! If you have a suggestion for a feature
+that's not on the current issues list, open a GitHub issue about it or start a discussion
+on the discord.
+
 Before writing any code, discuss with the team on discord or open an issue -- there may be
 existing work on the topic or a team member with some tips on the problem. Sometimes we
 also have opinions about a feature or topic which we want done in a particular way to fit our
-project goals. In some cases we will ask for changes or reject something.  Asking the team
+project goals. In some cases we will ask for changes before merging something. Asking the team
 first will reduce your effort involved with a merge.
 
 ## How do I contribute artistic content?
@@ -49,10 +48,13 @@ and unlike game code, changes cannot be automatically merged.  Therefore, it is 
 content creators get a "lock" and agree with others that they will be making changes to
 binary game content.
 
+### Content File Types
+
 - Images should be PNG format
 - Animations must be one image per frame -- no animated GIFs
 - Music should be OGG format -- no mp3
 - Sounds can be WAV or OGG
+- If possible, include a lossless version of sound/music (.wav, .flac, .ape, .wv, etc)
 - Add the author, source, and licence to the CREDITS.md file
 - If you rename the asset, include the original file name in the CREDITS.md file
 - If you are adding content, include the filenames and license in the CREDITS.md file
@@ -60,16 +62,7 @@ binary game content.
 PLEASE NOTE!  All contributions must be submitted with LOWER CASE FILENAMES only!  PRs which
 do not follow this format may be rejected until filenames are renamed.
 
-## Map Files
-We use the Tiled map editor to create the game maps and story content.  There are a few
-guidelines to follow when adding new maps or modifiying existing ones.
-
-- All events and collisions must be grid-aligned.  (View -> Snap to grid)
-- Like other assets, the filename must be lower case only
-- You must use `translated_dialog` for all dialogs
-- The "base64 zlib compressed" map format is preferred
-
-## Compressed Assets
+### Compressed Assets
 If you are a content creator, please consider uploading your assets in a uncompressed or
 lossless format.  For sounds or music this would be either a wave (WAV) or FLAC file.
 Images must be PNG.  We will not accept JPG or any variation of lossy compressed images,
@@ -80,6 +73,37 @@ to distribution by compressing or packing them for a smaller size.  However, we 
 have the originals to allow us to target a balance for size and quality for different platforms
 that we support.
 
+### File Name and Structure Guidelines
+- Must be lower case
+- No spaces
+- No special characters
+- Use letters, numbers, underscore (_) and dash (-) only
+- Files should be placed in the most appropriate folder
+- English is preferred because we have contributors who speak many languages
+
+**WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM**
+
+**WE MAY ASK YOU TO RENAME ASSETS BEFORE MERGING, SO THIS WILL SAVE YOU TIME**
+
+## Map Guidelines
+We use the Tiled map editor to create the game maps and story content.  There are a few
+guidelines to follow when adding new maps or modifiying existing ones.
+
+- All events and collisions must be grid-aligned.  (View -> Snap to grid)
+- Like other assets, the map filename must be lower case only
+- You must use `translated_dialog` for all dialogs
+- The "base64 zlib compressed" map format is preferred
+
+### Map Tileset Guidelines
+Please read and understand the following information to ensure that your new maps can be
+quickly accepted into the project.
+
+- Maps should use the "core" tilesets whenever possible and the "external tileset" .TSX file must be used
+- New maps should not have embedded tilesets -- use external tilesets only
+- New tilesets must be acceptable by our licence and content standards
+- New files should conform to the filename/structure guidelines
+- Obsolete assets should be avoided
+
 ## Pull Request Guidelines
 - !important!: we use use "git squash -- you should make your PR from your own branch (see below)
 - You must target the development branch
@@ -89,7 +113,7 @@ that we support.
 - Code should follow PEP-8, but we are not strict
 - Its strongly suggested to use the black code formatter with the defaults
 
-## Branches ##
+### Branches ##
 We use git squash as a convenience for developers when making PRs.  Before merging your changes
 git squash will combine them all into a single commit.  This keeps our history simple and a developer
 doesn't need to rebase, squash, or merge anything on their own, and we don't worry about having 1 or 
@@ -101,17 +125,6 @@ make a single change, make a new git branch from development and work from that.
 development if needed and then open a PR from your feature branch to our development branch.
 
 TL;DR: work from a feature branch, not the development branch
-
-## File names
-- Must be lower case
-- No spaces
-- No special characters
-- Use letters, numbers, underscore (_) and dash (-) only
-- English is preferred because we have contributors who speak many languages
-
-**WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM**
-
-**WE MAY ASK YOU TO RENAME ASSETS BEFORE MERGING, SO THIS WILL SAVE YOU TIME**
 
 ### Pull Request Checklist
 - Merge the development branch into your branch
@@ -129,7 +142,7 @@ A play test should be conducted from a new game.
 It is an honor system, so please keep that in mind as we accept your changes.
 
 Translations
-------------
+============
 
 Tuxemon has support for several languages.  Because Tuxemon is a community project
 and not all members are intimately familiar with or fluent in each language, there
@@ -146,9 +159,9 @@ what we can to make sure the game is fun and enjoyable to everyone.
 We use [Weblate](https://hosted.weblate.org/projects/tuxemon/) for translations.
 It is a powerful platform, but not without issues.  Occasionally it will have problems
 that an admin needs to resolve.  Please open an issue or contact a team member in the
-discord.
+discord if your weblate contributions are not being merged into the project.
 
-## Translations Guidelines
+### Translations Guidelines
 - Right-to-left langauges are not supported
 - Only the standard latin alphabet with some accents is supported
 - Our text rendering currently may not support your target language, but you can still
@@ -159,7 +172,7 @@ discord.
   fit correctly.
 
 Content Restrictions
---------------------
+====================
 
 The project is developed by and for a worldwide audience of all ages.  We ask that any
 contributions which includes word in text or image format be appropriate for people

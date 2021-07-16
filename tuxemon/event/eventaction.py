@@ -23,18 +23,24 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
 import logging
 from collections import namedtuple
 
-from tuxemon.tools import cast_values
-from typing import Optional, Type, Sequence, Any, Tuple
+from tuxemon.tools import cast_parameters_to_namedtuple, NamedTupleProtocol
+from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union,\
+    TypeVar, Generic, ClassVar
 from types import TracebackType
 from tuxemon.session import Session
+from abc import ABC, abstractmethod
 
 logger = logging.getLogger(__name__)
 
 
-class EventAction:
+ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
+
+
+class EventAction(ABC, Generic[ParameterClass]):
     """EventActions are executed during gameplay.
 
     EventAction subclasses implement "actions" defined in Tuxemon maps.
@@ -99,9 +105,8 @@ class EventAction:
 
     """
 
-    name = "GenericAction"
-    valid_parameters: Sequence[Tuple[Type[Any], str]] = list()
-    _param_factory = None
+    name: ClassVar[str] = "GenericAction"
+    param_class: ClassVar[Type[ParameterClass]]
 
     def __init__(
         self,
@@ -111,29 +116,25 @@ class EventAction:
 
         self.session = session
 
-        # TODO: METACLASS
-        # make a namedtuple class that will generate the parameters
-        # the patching of the class attribute should only happen once
-        if self.__class__._param_factory is None:
-            self.__class__._param_factory = namedtuple("parameters", [i[1] for i in self.valid_parameters])
-
         # if you need the parameters before they are processed, use this
         self.raw_parameters = parameters
 
         # parse parameters
         try:
-            if self.valid_parameters:
+            if self.param_class._fields:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = cast_values(parameters, self.valid_parameters)
-                self.parameters = self._param_factory(*values)
+                self.parameters = cast_parameters_to_namedtuple(
+                    parameters,
+                    self.param_class,
+                )
             else:
                 self.parameters = parameters
 
         except:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.valid_parameters)
+            logger.error(self.param_class)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None
 
@@ -208,6 +209,7 @@ class EventAction:
         """
         return self._done
 
+    @abstractmethod
     def start(self) -> None:
         """
         Called only once, when the action is started.
