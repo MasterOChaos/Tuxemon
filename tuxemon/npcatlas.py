@@ -25,3 +25,6 @@ def createatlas(inpcdat):
 
     # Save the image
     new_img.save(inpc + '.atlas.png')
+
+def test():
+    #put data here
