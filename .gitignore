@@ -77,3 +77,7 @@ Thumbs.db
 mods/tuxemon/maps/~$Map Helper.xlsx
 mods/tuxemon/db/encounter/~$JSON-o-matic for Encounters.ods
 /.mypy_cache/
+
+# Atlas files
+*.atlas.json
+*.atlas.png
