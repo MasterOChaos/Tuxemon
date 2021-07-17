@@ -199,7 +199,6 @@ class NPC(Entity):
             self.monster_boxes[key] = decode_monsters(value)
         for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
-    if ATLAS = False
     def load_sprites(self):
         """Load sprite graphics
 
