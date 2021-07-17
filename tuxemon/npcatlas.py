@@ -1,3 +1,4 @@
+# NOTICE THIS IS EXTREMELY BETA CODE AND IS SUBJECT TO CHANGE
 from PIL import Image
 import sys
 
