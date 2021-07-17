@@ -32,7 +32,7 @@ def createatlas(inpcdat):
             packer.pack("mods/" + ADIR + "/sprites/", "mods/" + ADIR + "/sprites/npc%d.atlas")
             return
 def make():
-    print("Cool")
+    print("Making Atlas")
     if(USEPIL == 1):
         #TODO put stuff here
         sys.exit

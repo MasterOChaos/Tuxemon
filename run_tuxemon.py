@@ -41,6 +41,8 @@ if __name__ == '__main__':
                         default=None, help='The starting map')
     parser.add_argument('-t', '--test-map', dest='test_map', type=str, nargs='?',
                         default=None, help='Skip title screen and load map directly')
+    parser.add_argument('-a', '--atlas', dest='wow', type=str, nargs='?',
+                        default=None, help='createatlas')
     args = parser.parse_args()
 
     if args.mod:
